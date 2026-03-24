@@ -54,12 +54,21 @@ def main() -> int:
         default='gemini-2.5-computer-use-preview-10-2025',
         help="Set which main model to use.",
     )
+    parser.add_argument(
+        "--search_engine_url",
+        type=str,
+        default="https://www.google.com",
+        help="The search_engine_url for the computer.",
+    )
+
+
     args = parser.parse_args()
 
     if args.env == "playwright":
         env = PlaywrightComputer(
             screen_size=PLAYWRIGHT_SCREEN_SIZE,
             initial_url=args.initial_url,
+            search_engine_url=args.search_engine_url,
             highlight_mouse=args.highlight_mouse,
         )
     elif args.env == "browserbase":
